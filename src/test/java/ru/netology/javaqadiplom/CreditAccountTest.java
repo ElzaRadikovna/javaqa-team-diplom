@@ -151,22 +151,23 @@ public class CreditAccountTest {
     // тесты на кредитный лимит
 
 
-
     // тесты исключений
 
     @Test
-    public void testIllegalArgumentException () {
+    public void testIllegalArgumentException() {
 
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new CreditAccount(2_000,5_000,-20));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new CreditAccount(2_000, 5_000, -20));
     }
-    @Test
-    public void testNegativeCreditLimitException () {
 
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new CreditAccount(2_000,-5_000,20));
+    @Test
+    public void testNegativeCreditLimitException() {
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new CreditAccount(2_000, -5_000, 20));
     }
-    @Test
-    public void testNegativeInitialBalance () {
 
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new CreditAccount(-2_000,5_000,20));
+    @Test
+    public void testNegativeInitialBalance() {
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new CreditAccount(-2_000, 5_000, 20));
     }
 }
