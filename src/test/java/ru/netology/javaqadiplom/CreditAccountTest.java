@@ -51,14 +51,14 @@ public class CreditAccountTest {
     @Test
     public void testPositivePay() {
         CreditAccount account = new CreditAccount(
-                2_000,
+                4_000,
                 5_000,
                 15
         );
 
         account.pay(1_000);
 
-        Assertions.assertEquals(1_000, account.getBalance());
+        Assertions.assertEquals(3_000, account.getBalance());
     }
 
     @Test
