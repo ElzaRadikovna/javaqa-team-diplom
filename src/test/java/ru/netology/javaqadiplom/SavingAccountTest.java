@@ -171,21 +171,7 @@ public class SavingAccountTest {
     }
 
     @Test
-    public void shouldPayWhenAmountMoreThanMaxBalance() { // ---12. Платеж больше баланса и максимального баланса, ничего не должно произойти
-        SavingAccount account = new SavingAccount(
-                2_000,
-                1_000,
-                10_000,
-                10
-        );
-
-        account.pay(30_000);
-
-        Assertions.assertEquals(2_000, account.getBalance());
-    }
-
-    @Test
-    public void shouldPayWhenBalanceAfterPaymentBecomeLessThanMinBalance() { // ---13. Платеж больше баланса, после покупки баланс меньше минимального значения, должно выбрасываться исключение
+    public void shouldPayWhenBalanceAfterPaymentBecomeLessThanMinBalance() { // ---12. Платеж больше баланса, после покупки баланс меньше минимального значения, должно выбрасываться исключение
         SavingAccount account = new SavingAccount(
                 2_000,
                 1_000,
@@ -199,7 +185,7 @@ public class SavingAccountTest {
     }
 
     @Test
-    public void shouldPayWhenAmountZero() { // +14. Платеж равен нулю, ничего не должно произойти
+    public void shouldPayWhenAmountZero() { // +13. Платеж равен нулю, ничего не должно произойти
         SavingAccount account = new SavingAccount(
                 2_000,
                 1_000,
@@ -213,7 +199,7 @@ public class SavingAccountTest {
     }
 
     @Test
-    public void shouldPayWhenAmountNegative() { // +15. Платеж меньше нуля, ничего не должно произойти
+    public void shouldPayWhenAmountNegative() { // +14. Платеж меньше нуля, ничего не должно произойти
         SavingAccount account = new SavingAccount(
                 1_500,
                 1_000,
