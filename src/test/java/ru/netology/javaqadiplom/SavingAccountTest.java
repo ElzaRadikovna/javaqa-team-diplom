@@ -21,6 +21,7 @@ public class SavingAccountTest {
 
 
     // Проверяем параметры конструктора, условия и исключения по параметрам
+
     @Test
     public void shouldThrowExceptionWhenBalanceLessThanMin() { // -2. Должна выкидываться ошибка, т.к. баланс меньше минимального
 
@@ -38,11 +39,11 @@ public class SavingAccountTest {
     public void shouldNonThrowExceptionWhenBalanceEqualsMin() { // +3. НЕ должна выкидываться ошибка, т.к. баланс может быть равен минимальному значению
 
         SavingAccount account = new SavingAccount(
-                    1_000,
-                    1_000,
-                    10_000,
-                    5
-            );
+                1_000,
+                1_000,
+                10_000,
+                5
+        );
 
         Assertions.assertEquals(account.getBalance(), account.getMinBalance());
     }
@@ -87,20 +88,20 @@ public class SavingAccountTest {
     }
 
     @Test
-    public void shouldNotThrowExceptionWhenMaxEqualsMin() { // +6. НЕ должна выкидываться ошибка, т.к. минимальное значение может равняться максимальному и балансу
+    public void shouldNotThrowExceptionWhenMaxEqualsMin() { // +7. НЕ должна выкидываться ошибка, т.к. минимальное значение может равняться максимальному и балансу
 
         SavingAccount account = new SavingAccount(
-                    10_000,
-                    10_000,
-                    10_000,
-                    5
-            );
+                10_000,
+                10_000,
+                10_000,
+                5
+        );
         Assertions.assertEquals(account.getMinBalance(), account.getMaxBalance());
 
     }
 
     @Test
-    public void shouldThrowExceptionWhenBalanceIsNegative() { // -7. Должна выкидываться ошибка, т.к. баланс отрицательный
+    public void shouldThrowExceptionWhenBalanceIsNegative() { // -8. Должна выкидываться ошибка, т.к. баланс отрицательный
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             SavingAccount account = new SavingAccount(
@@ -112,19 +113,118 @@ public class SavingAccountTest {
         });
     }
 
-        @Test
-        public void shouldThrowExceptionBecauseRateIsNegative() { // +8. Должна выкидываться ошибка, т.к. ставка отрицательная
+    @Test
+    public void shouldThrowExceptionBecauseRateIsNegative() { // +9. Должна выкидываться ошибка, т.к. ставка отрицательная
 
-            Assertions.assertThrows(IllegalArgumentException.class, () -> {
-                SavingAccount account = new SavingAccount(
-                        1_000,
-                        1_000,
-                        10_000,
-                        -3
-                );
-            });
-        }
-
-
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            SavingAccount account = new SavingAccount(
+                    1_000,
+                    1_000,
+                    10_000,
+                    -3
+            );
+        });
     }
+
+// ПРОВЕРКА ФУНКЦИИ PAY
+
+    @Test
+    public void shouldPayWhenAmountMoreThenBalance() { // +10. Проверка функции, когда платеж не превышает баланса
+        SavingAccount account = new SavingAccount(
+                2_000,
+                1_000,
+                10_000,
+                10
+        );
+
+        account.pay(1_000);
+
+        Assertions.assertEquals(2_000 - 1_000, account.getBalance());
+    }
+
+    @Test
+    public void shouldPayWhenBalanceAndAmountEquals() { // +11. Проверка функции, когда платеж равен балансу, но не превышает минимальное значение
+        SavingAccount account = new SavingAccount(
+                2_000,
+                0,
+                10_000,
+                10
+        );
+
+        account.pay(2_000);
+
+        Assertions.assertEquals(2_000 - 2_000, account.getBalance());
+    }
+
+    @Test
+    public void shouldPayWhenAmountMoreThanBalance() { // ---11. Платеж больше баланса, ничего не должно произойти
+        SavingAccount account = new SavingAccount(
+                2_000,
+                1_000,
+                10_000,
+                10
+        );
+
+        account.pay(3_000);
+
+        Assertions.assertEquals(2_000, account.getBalance());
+    }
+
+    @Test
+    public void shouldPayWhenAmountMoreThanMaxBalance() { // ---12. Платеж больше баланса и максимального баланса, ничего не должно произойти
+        SavingAccount account = new SavingAccount(
+                2_000,
+                1_000,
+                10_000,
+                10
+        );
+
+        account.pay(30_000);
+
+        Assertions.assertEquals(2_000, account.getBalance());
+    }
+
+    @Test
+    public void shouldPayWhenBalanceAfterPaymentBecomeLessThanMinBalance() { // ---13. Платеж больше баланса, после покупки баланс меньше минимального значения, должно выбрасываться исключение
+        SavingAccount account = new SavingAccount(
+                2_000,
+                1_000,
+                10_000,
+                10
+        );
+
+        account.pay(1_500);
+
+        Assertions.assertEquals(2_000, account.getBalance());
+    }
+
+    @Test
+    public void shouldPayWhenAmountZero() { // +14. Платеж равен нулю, ничего не должно произойти
+        SavingAccount account = new SavingAccount(
+                2_000,
+                1_000,
+                10_000,
+                10
+        );
+
+        account.pay(0);
+
+        Assertions.assertEquals(2_000, account.getBalance());
+    }
+
+    @Test
+    public void shouldPayWhenAmountNegative() { // +15. Платеж меньше нуля, ничего не должно произойти
+        SavingAccount account = new SavingAccount(
+                1_500,
+                1_000,
+                10_000,
+                10
+        );
+
+        account.pay(-100);
+
+        Assertions.assertEquals(1_500, account.getBalance());
+    }
+
+}
 
