@@ -212,5 +212,62 @@ public class SavingAccountTest {
         Assertions.assertEquals(1_500, account.getBalance());
     }
 
+    // ПРОВЕРКА ФУНКЦИИ ADD
+
+    @Test
+    public void shouldAfterAddBalanceEqualsMaxBalance() { // ---15. Пополнение приводит к balance=maxBalance
+        SavingAccount account = new SavingAccount(
+                2_000,
+                1_000,
+                10_000,
+                10
+        );
+
+        account.add(8_000);
+
+        Assertions.assertEquals(10_000, account.getBalance());
+    }
+
+    @Test
+    public void shouldAfterAddBalanceMoreMaxBalance() { // +16. Пополнение приводит к balance > maxBalance, функция не должна выполниться
+        SavingAccount account = new SavingAccount(
+                2_000,
+                1_000,
+                10_000,
+                10
+        );
+
+        account.add(10_000);
+
+        Assertions.assertEquals(2_000, account.getBalance());
+    }
+
+    @Test
+    public void shouldAddIsZero() { // +17. Пополнение равно нулю, баланс не меняется
+        SavingAccount account = new SavingAccount(
+                2_000,
+                1_000,
+                10_000,
+                10
+        );
+
+        account.add(0);
+
+        Assertions.assertEquals(2_000, account.getBalance());
+    }
+
+    @Test
+    public void shouldAddIsNegative() { // +18. Пополнение меньше нуля, баланс не должен измениться
+        SavingAccount account = new SavingAccount(
+                2_000,
+                1_000,
+                10_000,
+                10
+        );
+
+        account.add(10_000);
+
+        Assertions.assertEquals(2_000, account.getBalance());
+    }
 }
 
