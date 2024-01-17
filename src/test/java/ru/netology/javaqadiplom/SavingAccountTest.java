@@ -269,5 +269,35 @@ public class SavingAccountTest {
 
         Assertions.assertEquals(2_000, account.getBalance());
     }
+
+    // Проверка операции расчёта процентов на остаток счёта
+
+    @Test
+    public void shouldCountYearChangeWithInputData() { // +19. Расчет баланса с данными из условия
+        SavingAccount account = new SavingAccount(
+                200,
+                100,
+                100_000,
+                15
+        );
+
+        int percent = account.yearChange();
+
+        Assertions.assertEquals(30, percent);
+    }
+
+        @Test
+    public void shouldCountYearChangeWithOtherData() { // ---20. Расчет баланса с произвольными данными (когда значение баланса не делится на 100 целым числом)
+        SavingAccount account = new SavingAccount(
+                250,
+                100,
+                100_000,
+                15
+        );
+
+        int percent = account.yearChange();
+
+        Assertions.assertEquals(37, percent);
+    }
 }
 
