@@ -117,12 +117,12 @@ public class CreditAccountTest {
     @Test
     public void testRateWhenNegativeBalance() {
         CreditAccount account = new CreditAccount(
-                -2_000,
+                -170,
                 5_000,
                 15
         );
 
-        Assertions.assertEquals(-300, account.yearChange());
+        Assertions.assertEquals(-25, account.yearChange());
     }
 
     @Test
