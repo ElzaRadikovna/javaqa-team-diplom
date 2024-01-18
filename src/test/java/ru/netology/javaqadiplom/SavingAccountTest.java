@@ -101,12 +101,12 @@ public class SavingAccountTest {
     }
 
     @Test
-    public void shouldThrowExceptionWhenBalanceIsNegative() { // -8. Должна выкидываться ошибка, т.к. баланс отрицательный
+    public void shouldThrowExceptionWhenBalanceIsNegative() { // --8. Должна выкидываться ошибка, т.к. минимальный баланс отрицательный
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             SavingAccount account = new SavingAccount(
-                    -1_000,
                     1_000,
+                    -1_000,
                     10_000,
                     5
             );
