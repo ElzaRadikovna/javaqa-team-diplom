@@ -286,7 +286,10 @@ public class SavingAccountTest {
         Assertions.assertEquals(30, percent);
     }
 
-    @Test
+
+
+        @Test
+
     public void shouldCountYearChangeWithOtherData() { // ---20. Расчет баланса с произвольными данными (когда значение баланса не делится на 100 целым числом)
         SavingAccount account = new SavingAccount(
                 250,
