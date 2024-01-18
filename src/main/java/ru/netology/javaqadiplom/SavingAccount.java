@@ -31,7 +31,7 @@ public class SavingAccount extends Account {
                     "Начальный баланс не может быть меньше минимального баланса, а у вас: " + initialBalance
             );
         }
-        
+
         this.balance = initialBalance;
         this.minBalance = minBalance;
         this.maxBalance = maxBalance;
