@@ -287,4 +287,18 @@ public class SavingAccountTest {
 
         Assertions.assertEquals(37, percent);
     }
+
+    @Test
+    public void shouldCountYearChangeWhenBalanceZero() { // +21. Расчет процентов по счету, когда баланс 0
+        SavingAccount account = new SavingAccount(
+                0,
+                0,
+                100_000,
+                15
+        );
+
+        int percent = account.yearChange();
+
+        Assertions.assertEquals(0, percent);
+    }
 }
