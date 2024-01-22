@@ -95,9 +95,9 @@ public class CreditAccountTest {
                 15
         );
 
-        account.pay(6_000);
+        account.pay(8_000);
 
-        Assertions.assertEquals(5_000, account.getBalance());
+        Assertions.assertEquals(2_000, account.getBalance());
     }
 
 
@@ -117,10 +117,11 @@ public class CreditAccountTest {
     @Test
     public void testRateWhenNegativeBalance() {
         CreditAccount account = new CreditAccount(
-                -170,
+                500,
                 5_000,
                 15
         );
+        account.pay(670);
 
         Assertions.assertEquals(-25, account.yearChange());
     }
@@ -146,9 +147,6 @@ public class CreditAccountTest {
 
         Assertions.assertEquals(0, account.yearChange());
     }
-
-
-    // тесты на кредитный лимит
 
 
     // тесты исключений
