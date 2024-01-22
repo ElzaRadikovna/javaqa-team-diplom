@@ -1,6 +1,6 @@
 package ru.netology.javaqadiplom;
 
-public class Bank git {
+public class Bank extends Account {
 
     /**
      * Операция перевода указанной суммы с одного счёта на другой.
