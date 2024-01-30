@@ -146,4 +146,26 @@ public class BankBTest {
         Assertions.assertEquals(0, creditAccount.getBalance());
         Assertions.assertEquals(1_000, savingAccount.getBalance());
     }
+
+    @Test
+    public void shouldNOTTransferFromToSavingWhenBalanceMoreThanMax() {
+        Bank bank = new Bank();
+        CreditAccount creditAccount = new CreditAccount(
+                5_000,
+                5_000,
+                5
+        );
+
+        SavingAccount savingAccount = new SavingAccount(
+                6_000,
+                100,
+                10_000,
+                5
+        );
+
+        bank.transfer(creditAccount, savingAccount, 5_000);
+
+        Assertions.assertEquals(5_000, creditAccount.getBalance());
+        Assertions.assertEquals(6_000, savingAccount.getBalance());
+    }
 }

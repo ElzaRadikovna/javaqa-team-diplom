@@ -2,7 +2,7 @@ package ru.netology.javaqadiplom;
 
 public class Bank extends Account {
 
-    /**
+    /*
      * Операция перевода указанной суммы с одного счёта на другой.
      * Если операция прошла успешно, то баланс счёта from должен
      * уменьшиться на эту сумму, а баланс счёта to увеличиться.
@@ -14,13 +14,18 @@ public class Bank extends Account {
      * @param amount - сумма перевода
      * @return - true если операция прошла успешно, false иначе
      */
+
     public boolean transfer(Account from, Account to, int amount) {
+
         if (amount <= 0) {
             return false;
         }
+
         if (from.pay(amount)) {
             to.add(amount);
+            return true;
+        } else {
+            return false;
         }
-        return true;
     }
 }
