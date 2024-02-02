@@ -1,6 +1,7 @@
 package ru.netology.javaqadiplom;
 
 public class Bank extends Account {
+    protected int maxBalance;
 
     /*
      * Операция перевода указанной суммы с одного счёта на другой.
@@ -20,12 +21,17 @@ public class Bank extends Account {
         if (amount <= 0) {
             return false;
         }
-
-        if (from.pay(amount)) {
-            to.add(amount);
-            return true;
-        } else {
+        if (!to.add(amount)) {
             return false;
+        } else if (!to.pay(amount)) {
+            return false;
+        } else if (!from.add(amount)) {
+            return false;
+        } else if (!from.pay(amount)) {
+            return false;
+        } else if (from.pay(amount)) {
+            to.add(amount);
         }
+        return true;
     }
 }
