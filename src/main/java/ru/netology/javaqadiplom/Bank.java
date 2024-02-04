@@ -25,13 +25,19 @@ public class Bank extends Account {
             return false;
         } else if (!to.pay(amount)) {
             return false;
-        } else if (!from.add(amount)) {
-            return false;
-        } else if (!from.pay(amount)) {
-            return false;
         } else if (from.pay(amount)) {
             to.add(amount);
         }
         return true;
     }
 }
+
+
+
+
+
+
+
+
+
+
